@@ -1,5 +1,6 @@
 <?php
 include "../base.php";
-unset($_SESSION[$_GET['do']]);
-unset($_SESSION['cart']);
-to("../index.php?do={$_GET['do']}");
+unset($_SESSION[$_POST['table']]);
+if ($_POST['table']=='mem') {
+    unset($_SESSION['cart']);
+}

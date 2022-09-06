@@ -1,40 +1,36 @@
 <?php
-$type_b=$_GET['b']??"";
-$type_m=$_GET['m']??"";
-if ($type_b=='') {
+if ($b==0){
     $pds=$prds->all($sh);
-}else if($type_m==''){
-    $pds=$prds->all($sh," && `big`=$type_b");
+}else if($m==0){
+    $pds=$prds->all($sh," && `big`=$b");
 }else{
-    $pds=$prds->all($sh," && `big`=$type_b && `mid`=$type_m");
+    $pds=$prds->all($sh," && `big`=$b && `mid`=$m");
 }
 ?>
-<div class="w100 h400 oy_s">
 <h3>
-    <span id="big_t">
-    <?=($type_b=='')?"全部商品":$type->find($type_b)['name'].">";?>
-    </span>
-    <span id="mid_t">
-    <?=($type_m=='')?"":$type->find($type_m)['name'];?>
-    </span>
+    <span><?=($b==0)?"全部商品":$type->find($b)['name'].">";?></span>
+    <span><?=($m==0)?"":$type->find($m)['name'];?></span>
 </h3>
-<table class="w80 mg">
+<div class="w100 h400 oy_s">
     <?php
-    foreach ($pds as $key => $pd) {
-        ?>
+   foreach ($pds as $key => $prd) {
+    ?>
+    <table class="w80 mg">
         <tr>
-            <td class="pp">
-                <a href="?do=detall&id=<?=$pd['id'];?>"><img src="./img/<?=$pd['img'];?>" height="80px"></a>
+            <td class="w30 pp">
+                <a href="?do=detail&id=<?=$prd['id'];?>">
+                <img src="./icon/<?=$prd['img'];?>" height="80px">
+                </a>
             </td>
-            <td>
-                <div class="tt ct"><?=$pd['name'];?></div>
-                <div class="pp">價錢:<?=$pd['price'];?><a href="?do=buycart&id=<?=$pd['id'];?>" class="float_r"><img src="./icon/0402.jpg"></a> </div>
-                <div class="pp">規格:<?=$pd['norm'];?></div>
-                <div class="pp">簡介:<?=$pd['intro'];?></div>
+            <td class="w60">
+                <div class="tt ct"><?=$prd['name'];?></div>
+                <div class="pp"><?=$prd['price'];?><a href="?do=buycart&id=<?=$prd['id'];?>&qt=1" class="float_r"><img src="./icon/0402.jpg" alt=""></a> </div>
+                <div class="pp"><?=$prd['norm'];?></div>
+                <div class="pp"><?=$prd['intro'];?></div>
             </td>
         </tr>
-        <?php
-    }
+    </table>
+    <?php
+}
     ?>
-</table>
 </div>

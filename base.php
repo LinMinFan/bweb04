@@ -2,7 +2,7 @@
 session_start();
 date_default_timezone_set("Asia/Taipei");
 
-class DB{
+class Db{
     protected $table;
     protected $pdo;
     protected $dsn="mysql:host=localhost;charset=utf8;dbname=bweb04";
@@ -12,6 +12,7 @@ class DB{
         $this->table=$table;
         $this->pdo=new PDO($this->dsn,"root","");
     }
+
     function to_str($array){
         $tmp=[];
         foreach ($array as $key => $value) {
@@ -39,9 +40,9 @@ class DB{
             }else{
                 $sql.=$arg[0];
             }
-            if (isset($arg[1])) {
-                $sql.=$arg[1];
-            }
+        }
+        if (isset($arg[1])) {
+            $sql.=$arg[1];
         }
         //echo $sql;
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
@@ -61,7 +62,7 @@ class DB{
         if (isset($array['id'])) {
             $tmp=$this->to_str($array);
             $sql="UPDATE $this->table SET ".join(",",$tmp)." WHERE `id`={$array['id']}";
-        }else {
+        }else{
             $sql="INSERT INTO $this->table (`".join("`, `",array_keys($array))."`) VALUES ('".join("','",$array)."')";
         }
         //echo $sql;
@@ -76,9 +77,9 @@ class DB{
             }else{
                 $sql.=$arg[0];
             }
-            if (isset($arg[1])) {
-                $sql.=$arg[1];
-            }
+        }
+        if (isset($arg[1])) {
+            $sql.=$arg[1];
         }
         //echo $sql;
         return $this->pdo->query($sql)->fetchColumn();
@@ -93,15 +94,17 @@ function dd($array){
 function to($url){
     header("location:{$url}");
 }
-$admin=new DB('admin');
-$bot=new DB('bot');
-$prds=new DB('prds');
-$mem=new DB('mem');
-$orders=new DB('orders');
-$type=new DB('type');
-$sh=['sh'=>1];
+
+$bot=new Db('bot');
+$admin=new Db('admin');
+$mem=new Db('mem');
+$prds=new Db('prds');
+$orders=new Db('orders');
+$type=new Db('type');
+
 $today=date("Y-m-d");
 $start_day=date("Y-m-d",strtotime("-2 days"));
-$rank=" order by `rank`";
-$do_type=['1'=>'prds','2'=>'orders','3'=>'mem','4'=>'bot','5'=>'news'];
-$do_text=['1'=>'商品分類與管理','2'=>'訂單管理','3'=>'會員管理','4'=>'頁尾版權管理','5'=>'最新消息管理'];
+$sh=['sh'=>1];
+$a_pr=['1'=>'prds','2'=>'orders','3'=>'mem','4'=>'bot','5'=>'news'];
+$a_text=['1'=>'商品分類與管理','2'=>'訂單管理','3'=>'會員管理','4'=>'頁尾版權管理','5'=>'最新消息管理'];
+?>

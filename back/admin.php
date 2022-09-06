@@ -1,14 +1,5 @@
-<?php
-if (!empty($_GET['error'])) {
-    ?>
-    <script>
-        alert('<?=$_GET['error'];?>')
-    </script>
-    <?php
-}
-?>
 <div class="ct">
-    <button onclick="bb('add_adm')">新增管理員</button>
+    <button onclick="bb('do=add_admin')">新增管理員</button>
 </div>
 <table class="w80 mg">
     <tr class="tt">
@@ -17,23 +8,23 @@ if (!empty($_GET['error'])) {
         <td>管理</td>
     </tr>
     <?php
-    foreach ($admin->all() as $key => $adm) {
-        if ($adm['acc']=='admin') {
+    foreach ($admin->all() as $key => $ad) {
+        if ($ad['acc']=='admin') {
             ?>
             <tr class="pp">
-                <td><?=$adm['acc'];?></td>
-                <td><?=str_repeat("*",strlen($adm['pw']));?></td>
+                <td><?=$ad['acc'];?></td>
+                <td><?=str_repeat("*",strlen($ad['pw']));?></td>
                 <td>此帳號為最高權限</td>
             </tr>
             <?php
         }else{
             ?>
             <tr class="pp">
-                <td><?=$adm['acc'];?></td>
-                <td><?=str_repeat("*",strlen($adm['pw']));?></td>
+                <td><?=$ad['acc'];?></td>
+                <td><?=str_repeat("*",strlen($ad['pw']));?></td>
                 <td>
-                    <button onclick="bb('edit_adm&id=<?=$adm['id'];?>')">修改</button>
-                    <button onclick="del('admin',<?=$adm['id'];?>)">刪除</button>
+                    <button onclick="bb('do=edit_admin&id=<?=$ad['id'];?>')">修改</button>
+                    <button onclick="del('admin',<?=$ad['id'];?>)">刪除</button>
                 </td>
             </tr>
             <?php

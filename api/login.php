@@ -1,12 +1,13 @@
 <?php
 include "../base.php";
-if ($_POST['check'] !=$_SESSION['check']) {
+$do=$_POST['table'];
+if ($_POST['code'] != $_SESSION['code']) {
     echo 1;
 }else{
-    if (${$_POST['table']}->math('count','id',['acc'=>$_POST['acc'],'pw'=>$_POST['pw']])>0) {
-        $_SESSION[$_POST['table']]=$_POST['acc'];
-        echo 3;
-    }else{
+    if ($$do->math('count','id',['acc'=>$_POST['acc'],'pw'=>$_POST['pw']])==0) {
         echo 2;
+    }else{
+        $_SESSION[$do]=$_POST['acc'];
+        echo 0;
     }
 }
