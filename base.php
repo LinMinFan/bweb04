@@ -86,25 +86,74 @@ class Db{
     }
 }
 
+class Str{
+    protected $table;
+    protected $hd;
+    protected $td;
+    protected $abt;
+    protected $ahd;
+    protected $atd;
+    protected $ubt;
+    protected $uhd;
+    protected $utd;
+    function __construct($table)
+    {
+        $this->table=$table;
+        switch ($this->table) {
+            case 'title':
+                
+                break;
+            case 'title':
+                
+                break;
+            case 'title':
+                
+                break;
+            case 'title':
+                
+                break;
+            case 'title':
+                
+                break;
+            case 'title':
+                
+                break;
+            case 'title':
+                
+                break;
+            case 'title':
+                
+                break;
+            
+            default:
+                break;
+        }
+    }
+}
+
 function dd($array){
     echo "<pre>";
     print_r($array);
     echo "</pre>";
 }
 function to($url){
-    header("location:{$url}");
+    header("location:".$url);
 }
 
 $bot=new Db('bot');
+$prds=new Db('prds');
 $admin=new Db('admin');
 $mem=new Db('mem');
-$prds=new Db('prds');
 $orders=new Db('orders');
-$type=new Db('type');
+$types=new Db('types');
 
+$sh=['sh'=>1];
 $today=date("Y-m-d");
 $start_day=date("Y-m-d",strtotime("-2 days"));
-$sh=['sh'=>1];
-$a_pr=['1'=>'prds','2'=>'orders','3'=>'mem','4'=>'bot','5'=>'news'];
-$a_text=['1'=>'商品分類與管理','2'=>'訂單管理','3'=>'會員管理','4'=>'頁尾版權管理','5'=>'最新消息管理'];
+$level_icon=[];
+$ss_times=[];
+$pr_href=['1'=>'prds','2'=>'orders','3'=>'mem','4'=>'bot','5'=>'news'];
+$pr_text=['1'=>'商品分類與管理','2'=>'訂單管理','3'=>'會員管理','4'=>'頁尾版權管理','5'=>'最新消息管理'];
+//echo serialize([1,2,3,4,5]);
+//echo serialize([1=>1]);
 ?>

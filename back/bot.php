@@ -1,5 +1,5 @@
 <h3 class="ct">編輯頁尾版權區</h3>
-<form action="./api/save.php?do=bot" method="POST">
+<form action="./api/save.php?do=bot" method="post">
 <table class="w80 mg">
     <tr>
         <td class="tt">頁尾宣告內容</td>

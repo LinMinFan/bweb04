@@ -6,24 +6,34 @@ $pds=unserialize($ord['prds']);
 <h3 class="ct">訂單編號 <span class="red"><?=$ord['no'];?></span> 的詳細資料</h3>
 <table class="w80 mg">
     <tr>
-        <td class="tt">會員帳號</td>
-        <td class="pp"><?=$ord['acc'];?></td>
+        <td class="tt w40">會員帳號</td>
+        <td class="pp w50">
+        <?=$ord['acc'];?>
+        </td>
     </tr>
     <tr>
-        <td class="tt">姓名</td>
-        <td class="pp"><?=$ord['name'];?></td>
+        <td class="tt w40">姓名</td>
+        <td class="pp w50">
+        <?=$ord['name'];?>
+        </td>
     </tr>
     <tr>
-        <td class="tt">電子信箱</td>
-        <td class="pp"><?=$ord['email'];?></td>
+        <td class="tt w40">電子信箱</td>
+        <td class="pp w50">
+        <?=$ord['email'];?>
+        </td>
     </tr>
     <tr>
-        <td class="tt">聯絡地址</td>
-        <td class="pp"><?=$ord['addr'];?></td>
+        <td class="tt w40">聯絡地址</td>
+        <td class="pp w50">
+        <?=$ord['addr'];?>
+        </td>
     </tr>
     <tr>
-        <td class="tt">聯絡電話</td>
-        <td class="pp"><?=$ord['tel'];?></td>
+        <td class="tt w40">聯絡電話</td>
+        <td class="pp w50">
+        <?=$ord['tel'];?>
+        </td>
     </tr>
 </table>
 <table class="w80 mg">
@@ -37,22 +47,24 @@ $pds=unserialize($ord['prds']);
     <?php
     $sum=0;
     foreach ($pds as $id => $qt) {
+        $sum+=$prds->find($id)['price']*$qt;
         ?>
         <tr class="pp">
             <td><?=$prds->find($id)['name'];?></td>
             <td><?=$prds->find($id)['no'];?></td>
             <td><?=$qt;?></td>
             <td><?=$prds->find($id)['price'];?></td>
-            <td><?=($prds->find($id)['price'])*$qt;?></td>
+            <td>
+            <?=$prds->find($id)['price']*$qt;?>
+            </td>
         </tr>
         <?php
-        $sum+=($prds->find($id)['price'])*$qt;
     }
-    ?>
+?>
 </table>
-<div class="w80 mg tt ct">
-    總價:<?=$sum;?>
+<div class="ct w80 mg tt">
+    總價:<?=$ord['total'];?>
 </div>
 <div class="ct">
-    <button onclick="bb('do=orders')">返回</button>
+    <button type="button" onclick="bb('orders')">返回</button>
 </div>

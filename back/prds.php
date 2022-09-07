@@ -1,56 +1,56 @@
-<?php
-
-?>
 <div class="w100 h500 oy_s">
 <h3 class="ct">商品分類</h3>
 <div class="ct">
-    新增大分類<input type="text" name="" id="big"><button onclick="add_type(0,$('#big').val())">新增</button>
+    新增大分類
+    <input type="text" name="" id="type_b">
+    <button onclick="add_type(0,$('#type_b').val())">新增</button>
 </div>
 <div class="ct">
     新增中分類
-    <select name="" id="b_id">
+    <select name="" id="t_sb">
         <?php
-        foreach ($type->all(['parent'=>0]) as $key => $t_big) {
+        foreach ($types->all(['parent'=>0]) as $key => $b_data) {
             ?>
-            <option value="<?=$t_big['id'];?>"><?=$t_big['name'];?></option>
+            <option value="<?=$b_data['id'];?>"><?=$b_data['name'];?></option>
             <?php
         }
         ?>
     </select>
-    <input type="text" name="big" id="mid">
-    <button onclick="add_type($('#b_id').val(),$('#mid').val())">新增</button>
+    <input type="text" name="" id="type_m">
+    <button onclick="add_type($('#t_sb').val(),$('#type_m').val())">新增</button>
 </div>
 <table class="w80 mg">
     <?php
-    foreach ($type->all(['parent'=>0]) as $key => $t_big) {
-        ?>
-        <tr class="tt">
-            <td><?=$t_big['name'];?></td>
-            <td>
-                <button onclick="edit_type('<?=$t_big['name'];?>',<?=$t_big['id'];?>)">修改</button>
-                <button onclick="del('type',<?=$t_big['id'];?>)">刪除</button>
-            </td>
-        </tr>
-        <?php
-        foreach ($type->all(['parent'=>$t_big['id']]) as $key => $t_mid) {
-            ?>
-            <tr class="pp">
-                <td><?=$t_mid['name'];?></td>
-                <td>
-                    <button onclick="edit_type('<?=$t_mid['name'];?>',<?=$t_mid['id'];?>)">修改</button>
-                    <button onclick="del('type',<?=$t_mid['id'];?>)">刪除</button>
-                </td>
-            </tr>
-            <?php
-        }
+    foreach ($types->all(['parent'=>0]) as $key => $b_data) {
+    ?>
+    <tr class="tt">
+        <td><?=$b_data['name'];?></td>
+        <td>
+            <button onclick="save_type(<?=$b_data['id'];?>,'<?=$b_data['name'];?>')">修改</button>
+            <button onclick="del('types',<?=$b_data['id'];?>)">刪除</button>
+        </td>
+    </tr>
+    <?php
+    foreach ($types->all(['parent'=>$b_data['id']]) as $key => $m_data){
+    ?>
+    <tr class="pp">
+        <td><?=$m_data['name'];?></td>
+        <td>
+            <button onclick="save_type(<?=$m_data['id'];?>,'<?=$m_data['name'];?>')">修改</button>
+            <button onclick="del('types',<?=$m_data['id'];?>)">刪除</button>
+        </td>
+    </tr>
+    <?php
+    }
     }
     ?>
 </table>
 <h3 class="ct">商品管理</h3>
-
 <div class="ct">
     <button onclick="">新增商品</button>
-    <select name="" id="">
+</div>
+<div class="ct">
+    <select name="">
         <option value="">全部商品</option>
     </select>
 </div>
@@ -65,42 +65,41 @@
     <?php
     foreach ($prds->all() as $key => $prd) {
         ?>
-        <tr class="tt">
-            <td><?=$prd['no'];?></td>
-            <td><?=$prd['name'];?></td>
-            <td><?=$prd['qt'];?></td>
-            <td>
-                <?php
-                if ($prd['sh']==1) {
-                    echo "販售中";
-                }else{
-                    echo "已下架";
-                }
-                ?>
-            </td>
-            <td class="flex flex_w">
-                <div class="w45"><button onclick="">修改</button></div>
-                <div class="w45"><button onclick="del('prds',<?=$prd['id'];?>)">刪除</button></div>
-                <div class="w45"><button onclick="sh('prds',<?=$prd['id'];?>,1)">上架</button></div>
-                <div class="w45"><button onclick="sh('prds',<?=$prd['id'];?>,0)">下架</button></div>
-            </td>
-        </tr>
+        <tr class="pp">
+        <td><?=$prd['no'];?></td>
+        <td><?=$prd['name'];?></td>
+        <td><?=$prd['qt'];?></td>
+        <td>
+            <?php
+            if ($prd['sh']==1) {
+                echo "販售中";
+            }else{
+                echo "已下架";
+            }
+            ?>
+        </td>
+        <td class="flex flex_w">
+            <div class="w45"><button>修改</button></div>
+            <div class="w45"><button onclick="del('prds',<?=$prd['id'];?>)">刪除</button></div>
+            <div class="w45"><button onclick="sh('prds',<?=$prd['id'];?>,1)">上架</button></div>
+            <div class="w45"><button onclick="sh('prds',<?=$prd['id'];?>,0)">下架</button></div>
+        </td>
+    </tr>
         <?php
     }
     ?>
 </table>
 </div>
 <script>
-    function add_type(parent,name){
-        $.post("./api/save_type.php",{parent,name},()=>{
-            reload();
-        })
-    }
-    function edit_type(name,id){
-        name=prompt('修改名稱',name);
-        $.post("./api/save_type.php",{name,id},()=>{
-            reload();
-        })
-    }
+function add_type(parent,name){
+    $.post("./api/save.php?do=types",{parent,name},()=>{
+        bb('prds');
+    })
+}
+function save_type(id,name){
+    name=prompt('修改名稱',name);
+    $.post("./api/save.php?do=types",{id,name},()=>{
+        bb('prds');
+    })
+}
 </script>
-

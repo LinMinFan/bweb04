@@ -1,8 +1,6 @@
 <?php
 $do=$_GET['do']??"main";
 include "./base.php";
-$b=$_GET['b']??0;
-$m=$_GET['m']??0;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0039) -->
@@ -10,6 +8,7 @@ $m=$_GET['m']??0;
 
 <title>┌精品電子商務網站」</title>
 <link href="./css/css.css" rel="stylesheet" type="text/css">
+<link href="./css/style.css" rel="stylesheet" type="text/css">
 <script src="./js/js.js"></script>
 <script src="./js/jquery-1.9.1.min.js"></script>
 <script src="./js/main.js"></script>
@@ -34,62 +33,62 @@ $m=$_GET['m']??0;
                 }else{
                 ?>
                 <a href="?do=mem">會員登入</a> |
-                <?php
+                <?php      
                 }
                 ?>
                 <?php
                 if (isset($_SESSION['admin'])) {
                 ?>
-                <a href="javascript:bb('admin')">返回管理</a> |
+                <a href="javascript:bb('admin')">返回管理</a>
                 <?php
                 }else{
                 ?>
-                <a href="?do=admin">管理登入</a> |
-                <?php
+                <a href="?do=admin">管理登入</a> 
+                <?php      
                 }
                 ?>
            </div>
-                <marquee>年終特賣會開跑了 &nbsp; 情人節特惠活動</marquee> </div>
+                <marquee>情人節特惠活動 &nbsp; 年終特賣會開跑了</marquee>      </div>
         <div id="left" class="ct">
-        <div class="oy_s" style="height:480px;">
-        <a href="?b=0">全部商品 <span>(<?=$prds->math('count','id',$sh);?>)</span></a>
-        <?php
-        foreach ($type->all(['parent'=>0]) as $key => $tt) {
-                ?>
-                <div class="mainmu">
-                        <a href="?b=<?=$tt['id'];?>"><?=$tt['name'];?><span>(<?=$prds->math('count','id',$sh," && `big`={$tt['id']}");?>)</span></a>
-                        <?php
-                        foreach ($type->all(['parent'=>$tt['id']]) as $key => $mm) {
-                                ?>
-                                <div class="mw dpn">
-                                        <a style="background: #0f0;" href="?b=<?=$tt['id'];?>&m=<?=$mm['id'];?>"><?=$mm['name'];?><span>(<?=$prds->math('count','id',$sh," && `big`={$tt['id']} && `mid`={$mm['id']}");?>)</span></a>
-                                </div>
-                                <?php
-                        }
-                        ?>
-                </div>
+        	<div class="oy_s" style="height:480px;">
+                <a href="?">全部商品 (<?=$prds->math('count','id',$sh);?>)</a>
                 <?php
-        }
-        ?>
+                foreach ($types->all(['parent'=>0]) as $key => $bt) {
+                        ?>
+                        <div class="mainmu">
+                                <a href="?b=<?=$bt['id'];?>"><?=$bt['name'];?> (<?=$prds->math('count','id',['big'=>$bt['id'],'sh'=>1]);?>)</a>
+                                <?php
+                                foreach ($types->all(['parent'=>$bt['id']]) as $key => $mt) {
+                                      ?>
+                                        <div class="mw dpn">
+                                        <a style="background:#0f0;" href="?b=<?=$bt['id'];?>&m=<?=$mt['id'];?>"><?=$mt['name'];?> (<?=$prds->math('count','id',['big'=>$bt['id'],'mid'=>$mt['id'],'sh'=>1]);?>)</a>
+                                        </div>
+                                      <?php
+                                }
+                                ?>
+                        </div>
+                        <?php
+                }
+                ?>
         </div>
-                        <span>
+                <span>
             	<div>進站總人數</div>
                 <div style="color:#f00; font-size:28px;">
                 	00005                </div>
-            </span>
+                </span>
         </div>
         <div id="right">
-        <?php
-        $file="./front/$do.php";
-        if (file_exists($file)) {
-                include $file;
-        }else {
-                include "./front/main.php";;
-        }
-        ?>
-        </div>
+<?php
+$file="./front/$do.php";
+if (file_exists($file)) {
+include $file;
+}else{
+include "./front/main.php";
+}
+?>
+                </div>
         <div id="bottom" style="line-height:70px;background:url(icon/bot.png); color:#FFF;" class="ct">
-        	<?=$bot->find(1)['bot'];?>        </div>
+        <?=$bot->find(1)['bot'];?>
+        </div>
     </div>
-
 </body></html>
