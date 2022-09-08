@@ -1,6 +1,8 @@
-<div class="ct">
-    <button onclick="bb('add_admin')">會員管理</button>
-</div>
+<?php
+
+?>
+<div id="orders">
+<h3 class="ct">會員管理</h3>
 <table class="w80 mg">
     <tr class="tt">
         <td>姓名</td>
@@ -9,9 +11,9 @@
         <td>操作</td>
     </tr>
     <?php
-    foreach ($mem->all() as $key => $mm) {
-    ?>
-    <tr class="pp">
+        foreach ($mem->all() as $id => $mm) {
+            ?>
+            <tr class="pp">
         <td><?=$mm['name'];?></td>
         <td><?=$mm['acc'];?></td>
         <td><?=$mm['date'];?></td>
@@ -20,7 +22,11 @@
             <button onclick="del('mem',<?=$mm['id'];?>)">刪除</button>
         </td>
     </tr>
-    <?php
-    }
+            <?php
+        }
     ?>
 </table>
+</div>
+<script>
+
+</script>

@@ -18,7 +18,7 @@ $prs=unserialize($admin->find(['acc'=>$_SESSION['admin']])['pr']);
 <body>
 	<div id="main">
     	<div id="top">
-        	<a href="./index.php">
+		<a href="./index.php">
             	<img src="./icon/0416.jpg">
             </a>
                             <img src="./icon/0417.jpg">
@@ -26,25 +26,25 @@ $prs=unserialize($admin->find(['acc'=>$_SESSION['admin']])['pr']);
         <div id="left" class="ct">
         	<div style="min-height:400px;">
         	            	<a href="?do=admin">管理權限設置</a>
-            	            	<?php
-                                foreach ($prs as $key => $pr) {
-                                ?>
-        	            	<a href="?do=<?=$pr_href[$pr];?>"><?=$pr_text[$pr];?></a>
-                                <?php
-                                }
-                                ?>
-            	        	<a href="javascript:logout('admin')" style="color:#f00;">登出</a>
+							<?php
+							foreach ($prs as $key => $pr) {
+								?>
+								<a href="?do=<?=$pr_href[$pr];?>"><?=$pr_text[$pr];?></a>
+								<?php
+							}
+							?>
+            	        	<a href="./api/logout.php?do=admin" style="color:#f00;">登出</a>
                     </div>
                     </div>
         <div id="right">
 		<?php
-                $file="./back/$do.php";
-                if (file_exists($file)) {
-                        include $file;
-                }else{
-                        include "./back/admin.php";
-                }
-                ?>
+        $file="./back/$do.php";
+        if (file_exists($file)) {
+                include $file;
+        }else{
+                include "./back/admin.php";
+        }
+        ?>
         	        </div>
         <div id="bottom" style="line-height:70px; color:#FFF; background:url(icon/bot.png);" class="ct">
 		<?=$bot->find(1)['bot'];?>        </div>

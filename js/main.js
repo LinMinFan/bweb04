@@ -1,4 +1,4 @@
-function reload(){
+function reload() {
     location.reload();
 }
 function del(table,id){
@@ -17,6 +17,11 @@ function ff(url){
 function bb(url){
     location.href="./back.php?do="+url;
 }
+function q_del(way,data) {
+    $.post("./api/q_del.php",{way,data},()=>{
+        reload();
+    })
+}
 
 $(document).ready(function(e) {
     $(".mainmu").mouseover(
@@ -32,55 +37,3 @@ $(document).ready(function(e) {
 		}
 	)
 });
-
-function login(table,acc,pw,code){
-    $.post("./api/login.php",{table,acc,pw,code},(res)=>{
-        if (res==1) {
-            alert("對不起，您輸入的驗證碼有誤\r請您重新登入");
-        }else if(res==2){
-            alert("帳號或密碼錯誤");
-        }else{
-            switch (table) {
-                case 'mem':
-                    ff('main');
-                    break;
-                case 'admin':
-                    bb('admin');
-                    break;
-            
-                default:
-                    break;
-            }
-        }
-    })
-}
-function logout(table){
-    $.post("./api/logout.php",{table},()=>{
-        switch (table) {
-            case 'mem':
-                ff('mem');
-                break;
-            case 'admin':
-                ff('admin');
-                break;
-        
-            default:
-                break;
-        }
-    })
-}
-function chk_acc(acc){
-    if (acc=='admin' || acc=="") {
-        alert("不可使用");
-    }else {
-        $.post("./api/chk_acc.php",{acc},(res)=>{
-            alert(res);
-        })
-    }
-    
-}
-function unsetbuy(id) {
-    $.post("./api/unsetbuy.php",{id},()=>{
-        ff('buycart');
-    })
-}

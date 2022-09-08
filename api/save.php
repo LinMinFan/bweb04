@@ -2,6 +2,16 @@
 include "../base.php";
 $do=$_GET['do'];
 switch ($do) {
+    case 'mem':
+        if (isset($_POST['id'])) {
+            $$do->save($_POST);
+            to("../back.php?do=$do");
+            }else{
+                $_POST['date']=$today;
+                $$do->save($_POST);
+                to("../index.php?do=$do");
+        }
+        break;
     case 'orders':
         $_POST['prds']=serialize($_SESSION['cart']);
         $$do->save($_POST);
@@ -19,6 +29,7 @@ switch ($do) {
         to("../back.php?do=$do");
         break;
     case 'bot':
+        $_POST['id']=1;
         $$do->save($_POST);
         to("../back.php?do=$do");
         break;
@@ -26,17 +37,8 @@ switch ($do) {
         $$do->save($_POST);
         to("../back.php?do=$do");
         break;
-    case 'mem':
-        $$do->save($_POST);
-        if (isset($_POST['id'])) {
-            to("../back.php?do=$do");
-        }else{
-            to("../index.php?do=$do");
-        }
-        break;
     
     default:
-        $$do->save($_POST);
-        to("../index.php?do=$do");
+        
         break;
 }

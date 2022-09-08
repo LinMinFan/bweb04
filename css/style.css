@@ -4,35 +4,11 @@
 .oy_s{
     overflow-y: scroll;
 }
-.red{
-    color: #f00;
-}
 .float_l{
     float: left;
 }
 .float_r{
     float: right;
-}
-.blo{
-    display: block;
-}
-.dpn{
-    display: none;
-}
-.flex{
-    display: flex;
-}
-.flex_jc{
-    justify-content: center;
-}
-.flex_ja{
-    justify-content: space-around;
-}
-.flex_jb{
-    justify-content: space-between;
-}
-.flex_w{
-    flex-wrap: wrap;
 }
 .pos_r{
     position: relative;
@@ -43,6 +19,27 @@
 .pos_ct{
     left: 50%;
     transform: translateX(-50%);
+}
+.dpn{
+    display: none;
+}
+.flex{
+    display: flex;
+}
+.flex_w{
+    flex-wrap: wrap;
+}
+.flex_jc{
+    justify-content: center;
+}
+.flex_ja{
+    justify-content: space-around;
+}
+.flex_jb{
+    justify-content: space-between;
+}
+.blo{
+    display: block;
 }
 .h0{
     height: 0px;
@@ -121,4 +118,7 @@
 }
 .w100{
     width: 100%;
+}
+.red{
+    color: #f00;
 }
