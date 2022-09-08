@@ -27,9 +27,9 @@ include "./base.php";
                 <a href="?do=buycart">購物車</a> |
                 <?php
                 if (isset($_SESSION['mem'])) {
-                ?>
+                 ?>
                 <a href="./api/logout.php?do=mem">會員登出</a> |
-                <?php
+                 <?php
                 }else{
                 ?>
                 <a href="?do=mem">會員登入</a> |
@@ -38,9 +38,9 @@ include "./base.php";
                 ?>
                 <?php
                 if (isset($_SESSION['admin'])) {
-                ?>
+                 ?>
                 <a href="./back.php">返回管理</a>
-                <?php
+                 <?php
                 }else{
                 ?>
                 <a href="?do=admin">管理登入</a>
@@ -51,17 +51,17 @@ include "./base.php";
            <marquee behavior="" direction="">年終特賣會開跑了 &nbsp; 情人節特惠活動</marquee>        </div>
         <div id="left" class="ct">
         	<div style="min-height:400px;">
-                <a href="?">全部商品(<?=$prds->math('count','id',$sh);?>)</a>
+                <a href="?">全部商品 (<?=$prds->math('count','id',$sh);?>)</a>
                 <?php
-                foreach ($types->all(['parent'=>0]) as $key => $t_b) {
+                foreach ($types->all(['parent'=>0]) as $key => $tb) {
                 ?>
                 <div class="mainmu">
-                        <a href="?b=<?=$t_b['id'];?>"><?=$t_b['name'];?>(<?=$prds->math('count','id',$sh," && `big`={$t_b['id']}");?>)</a>
+                        <a href="?b=<?=$tb['id'];?>"><?=$tb['name'];?>(<?=$prds->math('count','id',$sh," && `big`={$tb['id']}");?>)</a>
                         <?php
-                        foreach ($types->all(['parent'=>$t_b['id']]) as $key => $t_m) {
+                        foreach ($types->all(['parent'=>$tb['id']]) as $key => $tm) {
                         ?>
                         <div class="mw dpn">
-                        <a style="background:#0f0" href="?b=<?=$t_b['id'];?>&m=<?=$t_m['id'];?>"><?=$t_m['name'];?>(<?=$prds->math('count','id',$sh," && `big`={$t_b['id']} && `mid`={$t_m['id']}");?>)</a>
+                        <a style="background:#0f0" href="?b=<?=$tb['id'];?>&m=<?=$tm['id'];?>"><?=$tm['name'];?>(<?=$prds->math('count','id',$sh," && `mid`={$tm['id']}");?>)</a>
                         </div>
                         <?php
                         }
@@ -78,15 +78,15 @@ include "./base.php";
             </span>
                     </div>
         <div id="right">
-        <?php
-        $file="./front/$do.php";
-        if (file_exists($file)) {
-                include $file;
-        }else{
-                include "./front/main.php";
-        }
-        ?>
-        </div>
+                <?php
+                $file="./front/$do.php";
+                if (file_exists($file)) {
+                        include $file;
+                }else {
+                        include "./front/main.php";
+                }
+                ?>
+        	        </div>
         <div id="bottom" style="line-height:70px;background:url(icon/bot.png); color:#FFF;" class="ct">
         	<?=$bot->find(1)['bot'];?>        </div>
     </div>

@@ -1,6 +1,12 @@
 .mg{
     margin: 0 auto;
 }
+.blo{
+    display: block;
+}
+.dpn{
+    display: none;
+}
 .oy_s{
     overflow-y: scroll;
 }
@@ -20,9 +26,6 @@
     left: 50%;
     transform: translateX(-50%);
 }
-.dpn{
-    display: none;
-}
 .flex{
     display: flex;
 }
@@ -38,8 +41,11 @@
 .flex_jb{
     justify-content: space-between;
 }
-.blo{
-    display: block;
+.flex_ac{
+    align-items: center;
+}
+.red{
+    color: #f00;
 }
 .h0{
     height: 0px;
@@ -118,7 +124,4 @@
 }
 .w100{
     width: 100%;
-}
-.red{
-    color: #f00;
 }

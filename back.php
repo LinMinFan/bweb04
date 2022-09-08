@@ -1,7 +1,6 @@
 <?php
 $do=$_GET['do']??"admin";
 include "./base.php";
-$prs=unserialize($admin->find(['acc'=>$_SESSION['admin']])['pr']);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0057)?do=admin -->
@@ -27,7 +26,8 @@ $prs=unserialize($admin->find(['acc'=>$_SESSION['admin']])['pr']);
         	<div style="min-height:400px;">
         	            	<a href="?do=admin">管理權限設置</a>
 							<?php
-							foreach ($prs as $key => $pr) {
+							$prs=$admin->find(['acc'=>$_SESSION['admin']])['pr'];
+							foreach (unserialize($prs) as $key => $pr) {
 								?>
 								<a href="?do=<?=$pr_href[$pr];?>"><?=$pr_text[$pr];?></a>
 								<?php
@@ -38,13 +38,13 @@ $prs=unserialize($admin->find(['acc'=>$_SESSION['admin']])['pr']);
                     </div>
         <div id="right">
 		<?php
-        $file="./back/$do.php";
-        if (file_exists($file)) {
-                include $file;
-        }else{
-                include "./back/admin.php";
-        }
-        ?>
+                $file="./back/$do.php";
+                if (file_exists($file)) {
+                        include $file;
+                }else {
+                        include "./back/admin.php";
+                }
+                ?>
         	        </div>
         <div id="bottom" style="line-height:70px; color:#FFF; background:url(icon/bot.png);" class="ct">
 		<?=$bot->find(1)['bot'];?>        </div>

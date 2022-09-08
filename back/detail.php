@@ -1,40 +1,42 @@
 <?php
 include "../base.php";
 $user=$orders->find(['no'=>$_POST['no']]);
-$pds=unserialize($user['prds']);
 ?>
-<h3 class="ct">訂單編號 <span class="red"><?=$user['no'];?></span>的詳細資料</h3>
+<h3 class="ct">
+ 訂單編號 <span class="red"><?=$user['no'];?></span>的詳細資料
+</h3>
+<div class="w100 h400 oy_s">
 <table class="w80 mg">
-    <tr>
-        <td class="tt w35 ct">登入帳號</td>
-        <td class="pp w50">
+    <tr class="">
+        <td class="ct tt w35">會員帳號</td>
+        <td class="pp w45">
         <?=$user['acc'];?>
         </td>
     </tr>
-    <tr>
-        <td class="tt w35 ct">姓名</td>
-        <td class="pp w50">
+    <tr class="">
+        <td class="ct tt w35">姓名</td>
+        <td class="pp w45">
         <?=$user['name'];?>
         </td>
     </tr>
-    <tr>
-        <td class="tt w35 ct">電子信箱</td>
-        <td class="pp w50">
+    <tr class="">
+        <td class="ct tt w35">電子信箱</td>
+        <td class="pp w45">
         <?=$user['email'];?>
         </td>
     </tr>
-    <tr>
-        <td class="tt w35 ct">住址</td>
-        <td class="pp w50">
+    <tr class="">
+        <td class="ct tt w35">聯絡地址</td>
+        <td class="pp w45">
         <?=$user['addr'];?>
         </td>
     </tr>
-    <tr>
-        <td class="tt w35 ct">電話</td>
-        <td class="pp w50">
-        <?=$user['tel'];?>
-        </td>
-    </tr>
+<tr class="">
+    <td class="ct tt w35">聯絡電話</td>
+    <td class="pp w45">
+    <?=$user['tel'];?>
+    </td>
+</tr>
 </table>
 <table class="w80 mg">
     <tr class="tt">
@@ -44,24 +46,27 @@ $pds=unserialize($user['prds']);
         <td>單價</td>
         <td>小計</td>
     </tr>
-    <?php
-    foreach ($pds as $id => $qt) {
+<?php
+    $sum=0;
+    foreach (unserialize($user['prds']) as $id => $qt) {
     ?>
     <tr class="pp">
-    <td><?=$prds->find($id)['name'];?></td>
-    <td><?=$prds->find($id)['no'];?></td>
-    <td><?=$qt;?></td>
-    <td><?=$prds->find($id)['price'];?></td>
-    <td><?=$prds->find($id)['price']*$qt;?></td>
+        <td><?=$prds->find($id)['name'];?></td>
+        <td><?=$prds->find($id)['no'];?></td>
+        <td><?=$qt;?></td>
+        <td><?=$prds->find($id)['price'];?></td>
+        <td><?=$prds->find($id)['price']*$qt;?></td>
     </tr>
     <?php
+    $sum+=$prds->find($id)['price']*$qt;
     }
-    ?>
+?>
 </table>
-<div class="w80 mg ct tt">
-    總價:<?=$user['total'];?>
+<div class="w80 tt ct mg">
+    總價:<?=$sum;?>
+    
 </div>
 <div class="ct">
-   <button type="button" onclick="bb('orders')">返回</button>
+    <button type="button" onclick="bb('orders')">返回</button>
 </div>
-
+</div>
