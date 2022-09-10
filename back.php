@@ -1,6 +1,7 @@
 <?php
 $do=$_GET['do']??"admin";
 include "./base.php";
+$prs=$admin->find(['acc'=>$_SESSION['admin']])['pr'];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0057)?do=admin -->
@@ -17,35 +18,34 @@ include "./base.php";
 <body>
 	<div id="main">
     	<div id="top">
-		<a href="./index.php">
+        	<a href="./index.php">
             	<img src="./icon/0416.jpg">
             </a>
                             <img src="./icon/0417.jpg">
                    </div>
         <div id="left" class="ct">
         	<div style="min-height:400px;">
-        	            	<a href="?do=admin">管理權限設置</a>
-							<?php
-							$prs=$admin->find(['acc'=>$_SESSION['admin']])['pr'];
-							foreach (unserialize($prs) as $key => $pr) {
-								?>
-								<a href="?do=<?=$pr_href[$pr];?>"><?=$pr_text[$pr];?></a>
-								<?php
-							}
-							?>
-            	        	<a href="./api/logout.php?do=admin" style="color:#f00;">登出</a>
+        	        <a href="?do=admin">管理權限設置</a>
+            	    <?php
+					foreach (unserialize($prs) as $key => $pr) {
+						?>
+						<a href="?do=<?=$pr_href[$pr];?>"><?=$pr_text[$pr];?></a>
+						<?php
+					}
+					?>
+            	    <a href="./api/logout.php?do=admin" style="color:#f00;">登出</a>
                     </div>
                     </div>
         <div id="right">
-		<?php
-                $file="./back/$do.php";
-                if (file_exists($file)) {
-                        include $file;
-                }else {
-                        include "./back/admin.php";
-                }
-                ?>
-        	        </div>
+    	<?php
+        $file="./back/$do.php";
+        if (file_exists($file)) {
+                include $file;
+        }else{
+                include "./back/admin.php";
+        }
+        ?>
+		</div>
         <div id="bottom" style="line-height:70px; color:#FFF; background:url(icon/bot.png);" class="ct">
 		<?=$bot->find(1)['bot'];?>        </div>
     </div>

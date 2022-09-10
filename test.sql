@@ -1,0 +1,13 @@
+INSERT INTO `mem` (`id`, `name`, `acc`, `pw`, `email`, `addr`, `tel`, `date`) VALUES (NULL, 'test02', 'test02', '1234', 'test02', 'test02', 'test02', '2022-09-10');
+INSERT INTO `mem` (`id`, `name`, `acc`, `pw`, `email`, `addr`, `tel`, `date`) VALUES (NULL, 'test03', 'test03', '1234', 'test03', 'test03', 'test03', '2022-09-10');
+INSERT INTO `mem` (`id`, `name`, `acc`, `pw`, `email`, `addr`, `tel`, `date`) VALUES (NULL, 'test04', 'test04', '1234', 'test04', 'test04', 'test04', '2022-09-10');
+INSERT INTO `mem` (`id`, `name`, `acc`, `pw`, `email`, `addr`, `tel`, `date`) VALUES (NULL, 'test05', 'test05', '1234', 'test05', 'test05', 'test05', '2022-09-10');
+
+INSERT INTO `orders` (`id`, `no`, `acc`, `name`, `email`, `addr`, `tel`, `total`, `date`, `prds`) VALUES (NULL, '2022091000002', 'test02', 'test02', 'test02', 'test02', 'test02', '1200', '2022-09-10', 'a:1:{i:1;i:1;}');
+INSERT INTO `orders` (`id`, `no`, `acc`, `name`, `email`, `addr`, `tel`, `total`, `date`, `prds`) VALUES (NULL, '2022091000003', 'test03', 'test03', 'test03', 'test03', 'test03', '1200', '2022-09-10', 'a:1:{i:1;i:1;}');
+INSERT INTO `orders` (`id`, `no`, `acc`, `name`, `email`, `addr`, `tel`, `total`, `date`, `prds`) VALUES (NULL, '2022091000004', 'test04', 'test04', 'test04', 'test04', 'test04', '1200', '2022-09-10', 'a:1:{i:1;i:1;}');
+INSERT INTO `orders` (`id`, `no`, `acc`, `name`, `email`, `addr`, `tel`, `total`, `date`, `prds`) VALUES (NULL, '2022091000005', 'test05', 'test05', 'test05', 'test05', 'test05', '1200', '2022-09-10', 'a:1:{i:1;i:1;}');
+INSERT INTO `orders` (`id`, `no`, `acc`, `name`, `email`, `addr`, `tel`, `total`, `date`, `prds`) VALUES (NULL, '2022091000006', 'test06', 'test06', 'test06', 'test06', 'test06', '1200', '2022-09-10', 'a:1:{i:1;i:1;}');
+INSERT INTO `orders` (`id`, `no`, `acc`, `name`, `email`, `addr`, `tel`, `total`, `date`, `prds`) VALUES (NULL, '2022091000007', 'test07', 'test07', 'test07', 'test07', 'test07', '1200', '2022-09-10', 'a:1:{i:1;i:1;}');
+INSERT INTO `orders` (`id`, `no`, `acc`, `name`, `email`, `addr`, `tel`, `total`, `date`, `prds`) VALUES (NULL, '2022091000008', 'test08', 'test08', 'test08', 'test08', 'test08', '1200', '2022-09-10', 'a:1:{i:1;i:1;}');
+INSERT INTO `orders` (`id`, `no`, `acc`, `name`, `email`, `addr`, `tel`, `total`, `date`, `prds`) VALUES (NULL, '2022091000009', 'test09', 'test09', 'test09', 'test09', 'test09', '1200', '2022-09-10', 'a:1:{i:1;i:1;}');

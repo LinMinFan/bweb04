@@ -1,7 +1,7 @@
 <?php
 include "../base.php";
 $do=$_GET['do'];
-if ($do=='mem') {
+if ($$do=='mem') {
     unset($_SESSION['cart']);
 }
 unset($_SESSION[$do]);

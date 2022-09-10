@@ -1,6 +1,12 @@
 .mg{
     margin: 0 auto;
 }
+.fs20{
+    font-size: 20px;
+}
+.fs12{
+    font-size: 12px;
+}
 .blo{
     display: block;
 }
