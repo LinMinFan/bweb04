@@ -3,24 +3,25 @@ $x=rand(1,99);
 $y=rand(1,99);
 $_SESSION['code']=$x+$y;
 ?>
+
 <table class="w80 mg">
-    <tr class="">
-        <td class="tt ct w30">帳號</td>
+    <tr>
+        <td class="tt w30">帳號</td>
         <td class="pp w50">
-        <input type="text" name="" id="acc">
+            <input type="text" name="" id="acc">
         </td>
     </tr>
-    <tr class="">
-        <td class="tt ct w30">密碼</td>
+    <tr>
+        <td class="tt w30">密碼</td>
         <td class="pp w50">
-        <input type="password" name="" id="pw">
+            <input type="password" name="" id="pw">
         </td>
     </tr>
-    <tr class="">
-        <td class="tt ct w30">驗證碼</td>
+    <tr>
+        <td class="tt w30">驗證碼</td>
         <td class="pp w50">
             <?="{$x}+{$y}=";?>
-        <input type="text" name="" id="code">
+            <input type="text" name="" id="code">
         </td>
     </tr>
 </table>

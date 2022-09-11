@@ -1,11 +1,12 @@
 <?php
 $user=$mem->find(['acc'=>$_SESSION['mem']]);
 ?>
+
 <h3 class="ct">填寫資料</h3>
 <form action="./api/save.php?do=orders" method="post">
 <table class="w80 mg">
     <tr>
-        <td class="tt">會員帳號</td>
+        <td class="tt">登入帳號</td>
         <td class="pp">
             <?=$user['acc'];?>
             <input type="hidden" name="acc" value="<?=$user['acc'];?>">
@@ -44,25 +45,25 @@ $user=$mem->find(['acc'=>$_SESSION['mem']]);
         <td>單價</td>
         <td>小計</td>
     </tr>
-    <?php
-    $sum=0;
-    if (!empty($_SESSION['cart'])){
-        foreach ($_SESSION['cart'] as $id => $qt){
-            ?>
+<?php
+$sum=0;
+if (isset($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $id => $qt) {
+        ?>
         <tr class="pp">
-                <td><?=$prds->find($id)['name'];?></td>
-                <td><?=$prds->find($id)['no'];?></td>
-                <td><?=$qt;?></td>
-                <td><?=$prds->find($id)['price'];?></td>
-                <td><?=$prds->find($id)['price']*$qt;?></td>
-            </tr>
-            <?php
-            $sum+=$prds->find($id)['price']*$qt;
-        }
+        <td><?=$prds->find($id)['name'];?></td>
+        <td><?=$prds->find($id)['no'];?></td>
+        <td><?=$qt;?></td>
+        <td><?=$prds->find($id)['price'];?></td>
+        <td><?=$prds->find($id)['price']*$qt;?></td>
+    </tr>
+        <?php
+        $sum+=$prds->find($id)['price']*$qt;
     }
-    ?>
+}
+?>
 </table>
-<div class="w80 mg tt ct">
+<div class="tt ct w80 mg">
     總價:<?=$sum;?>
     <input type="hidden" name="total" value="<?=$sum;?>">
 </div>
@@ -72,9 +73,5 @@ $user=$mem->find(['acc'=>$_SESSION['mem']]);
 </div>
 </form>
 <script>
-    function del_cart(id){
-        $.post("./api/del_cart.php",{id},()=>{
-            ff('buycart');
-        })
-    }
+
 </script>

@@ -3,9 +3,10 @@ if (isset($_GET['id']) && isset($_GET['qt'])) {
     $_SESSION['cart'][$_GET['id']]=$_GET['qt'];
 }
 if (!isset($_SESSION['mem'])) {
-    to("./index.php?do=mem");
+    to("?do=mem");
 }
 ?>
+
 <h3 class="ct"><?=$_SESSION['mem'];?>的購物車</h3>
 <table class="w80 mg">
     <tr class="tt">
@@ -18,10 +19,10 @@ if (!isset($_SESSION['mem'])) {
         <td>刪除</td>
     </tr>
 <?php
-if (!empty($_SESSION['cart'])) {
-foreach ($_SESSION['cart'] as $id => $qt) {
-?>
-<tr class="pp">
+if (isset($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $id => $qt) {
+        ?>
+        <tr class="pp">
         <td><?=$prds->find($id)['no'];?></td>
         <td><?=$prds->find($id)['name'];?></td>
         <td><?=$qt;?></td>
@@ -32,8 +33,8 @@ foreach ($_SESSION['cart'] as $id => $qt) {
             <a href="javascript:del_cart(<?=$id;?>)"><img src="./icon/0415.jpg" alt=""></a>
         </td>
     </tr>
-<?php
-}
+        <?php
+    }
 }
 ?>
 </table>

@@ -1,8 +1,8 @@
-<div class="ct">
+<h3 class="ct">
     <button onclick="bb('add_admin')">新增管理員</button>
-</div>
+</h3>
 <table class="w80 mg">
-    <tr class="tt ct">
+    <tr class="tt">
         <td>帳號</td>
         <td>密碼</td>
         <td>管理</td>
@@ -11,15 +11,17 @@
 foreach ($admin->all() as $key => $ad) {
     if ($ad['acc']=='admin') {
         ?>
-        <tr class="pp">
+<tr class="pp">
         <td><?=$ad['acc'];?></td>
         <td><?=str_repeat("*",strlen($ad['pw']));?></td>
-        <td>此帳號為最高權限</td>
+        <td>
+            此帳號為最高權限
+        </td>
     </tr>
         <?php
     }else{
         ?>
-        <tr class="pp">
+<tr class="pp">
         <td><?=$ad['acc'];?></td>
         <td><?=str_repeat("*",strlen($ad['pw']));?></td>
         <td>
@@ -27,7 +29,7 @@ foreach ($admin->all() as $key => $ad) {
             <button onclick="del('admin',<?=$ad['id'];?>)">刪除</button>
         </td>
     </tr>
-        <?php
+        <?php 
     }
 }
 ?>
