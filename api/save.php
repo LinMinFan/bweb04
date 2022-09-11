@@ -4,36 +4,35 @@ $do=$_GET['do'];
 
 switch ($do) {
     case 'mem':
-        if (!isset($_POST['id'])) {
+        if (isset($_POST['id'])) {
+            $$do->save($_POST);
+            to("../back.php?do={$do}");
+        }else{
             $_POST['date']=$today;
             $$do->save($_POST);
-            to("../index.php?do=$do");
+            to("../index.php?do={$do}");
         }
-        $$do->save($_POST);
-        to("../back.php?do=$do");
         break;
     case 'admin':
         $_POST['pr']=serialize($_POST['pr']);
         $$do->save($_POST);
-        to("../back.php?do=$do");
+        to("../back.php?do={$do}");
         break;
     case 'bot':
-        $_POST['id']=1;
         $$do->save($_POST);
-        to("../back.php?do=$do");
+        to("../back.php?do={$do}");
+        break;
+    case 'type':
+        $$do->save($_POST);
+        to("../back.php?do={$do}");
         break;
     case 'orders':
         $_POST['no']=date("Ymd").date("His");
         $_POST['date']=$today;
         $_POST['prds']=serialize($_SESSION['cart']);
-        unset($_SESSION['cart']);
         $$do->save($_POST);
-        ?>
-        <script>
-            alert("訂購成功\n感謝您的選購");
-            location.href="../index.php?do=main";
-        </script>
-        <?php
+        unset($_SESSION['cart']);
+        to("../index.php?do=buycart");
         break;
     
     default:

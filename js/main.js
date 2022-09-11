@@ -1,14 +1,14 @@
 function reload(){
-    location.reload();
+    location.reload()
 }
 function del(table,id){
     $.post("./api/del.php",{table,id},()=>{
-        reload();
+        reload()
     })
 }
 function sh(table,id,sh){
     $.post("./api/sh.php",{table,id,sh},()=>{
-        reload();
+        reload()
     })
 }
 function ff(url){
@@ -17,7 +17,6 @@ function ff(url){
 function bb(url){
     location.href="./back.php?do="+url;
 }
-
 
 $(document).ready(function(e) {
     $(".mainmu").mouseover(

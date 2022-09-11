@@ -1,17 +1,8 @@
 .mg{
     margin: 0 auto;
 }
-.fs20{
-    font-size: 20px;
-}
-.fs12{
-    font-size: 12px;
-}
 .blo{
     display: block;
-}
-.dpn{
-    display: none;
 }
 .oy_s{
     overflow-y: scroll;
@@ -21,6 +12,9 @@
 }
 .float_r{
     float: right;
+}
+.red{
+    color: #f00;
 }
 .pos_r{
     position: relative;
@@ -50,8 +44,8 @@
 .flex_ac{
     align-items: center;
 }
-.red{
-    color: #f00;
+.dpn{
+    display: none;
 }
 .h0{
     height: 0px;

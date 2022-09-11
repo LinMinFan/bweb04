@@ -1,3 +1,6 @@
+<?php
+
+?>
 <h3 class="ct">會員管理</h3>
 <table class="w80 mg">
     <tr class="tt">
@@ -6,10 +9,10 @@
         <td>註冊日期</td>
         <td>操作</td>
     </tr>
-    <?php
-    foreach ($mem->all() as $key => $mm) {
-    ?>
-    <tr class="pp">
+<?php
+foreach ($mem->all() as $key => $mm) {
+   ?>
+   <tr class="pp">
         <td><?=$mm['name'];?></td>
         <td><?=$mm['acc'];?></td>
         <td><?=$mm['date'];?></td>
@@ -18,7 +21,8 @@
             <button onclick="del('mem',<?=$mm['id'];?>)">刪除</button>
         </td>
     </tr>
-    <?php
-    }
-    ?>
+   <?php
+}
+?>
 </table>
+

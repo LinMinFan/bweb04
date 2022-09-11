@@ -25,27 +25,27 @@ $prs=$admin->find(['acc'=>$_SESSION['admin']])['pr'];
                    </div>
         <div id="left" class="ct">
         	<div style="min-height:400px;">
-        	        <a href="?do=admin">管理權限設置</a>
-            	    <?php
-					foreach (unserialize($prs) as $key => $pr) {
-						?>
-						<a href="?do=<?=$pr_href[$pr];?>"><?=$pr_text[$pr];?></a>
-						<?php
-					}
-					?>
-            	    <a href="./api/logout.php?do=admin" style="color:#f00;">登出</a>
+        	            	<a href="?do=admin">管理權限設置</a>
+                        <?php
+                        foreach (unserialize($prs) as $key => $pr) {
+                          ?>
+            	            	<a href="?do=<?=$pr_href[$pr];?>"><?=$pr_text[$pr];?></a>
+                          <?php
+                        }
+                        ?>
+            	        	<a href="./api/logout.php?do=admin" style="color:#f00;">登出</a>
                     </div>
                     </div>
         <div id="right">
-    	<?php
+		<?php
         $file="./back/$do.php";
         if (file_exists($file)) {
-                include $file;
+          include $file;
         }else{
-                include "./back/admin.php";
+          include "./back/admin.php";
         }
-        ?>
-		</div>
+          ?>
+        	        </div>
         <div id="bottom" style="line-height:70px; color:#FFF; background:url(icon/bot.png);" class="ct">
 		<?=$bot->find(1)['bot'];?>        </div>
     </div>
